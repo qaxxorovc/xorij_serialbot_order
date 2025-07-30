@@ -58,6 +58,40 @@ async def get_admins_ids():
     return [admin[0] for admin in admins]  # faqat admin ID'larini ro'yxatga olish
 
 
+async def fake_link():
+    conn, cur = await connect_db()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS fake_link 
+        (
+            link_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            link_title,
+            link
+        )        
+    """)
+    conn.commit()
+    conn.close()
+
+async def add_link(title: str, link: str):
+    conn, cur = await connect_db()
+    cur.execute("INSERT INTO fake_link (link_title, link) VALUES (?, ?)", (title, link))
+    conn.commit()
+    conn.close()
+
+# Barcha linklarni olish
+async def get_all_links():
+    conn, cur = await connect_db()
+    cur.execute("SELECT * FROM fake_link")
+    rows = cur.fetchall()
+    conn.close()
+    return rows
+
+# ID bo‘yicha linkni o‘chirish
+async def remove_link_by_id(link_id: int):
+    conn, cur = await connect_db()
+    cur.execute("DELETE FROM fake_link WHERE link_id = ?", (link_id,))
+    conn.commit()
+    conn.close()
+
 async def movie_table():
     conn, cur = await connect_db()
     cur.execute("""

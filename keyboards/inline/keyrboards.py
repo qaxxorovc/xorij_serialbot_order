@@ -20,6 +20,10 @@ adminmenu = InlineKeyboardMarkup(
             InlineKeyboardButton(text="❌ Majburiy obuna kanalini O'chirish", callback_data="remove_subscription"),
         ],
         [
+            InlineKeyboardButton(text="➕ Soxta link qo'shish", callback_data="add_fake_link"),
+            InlineKeyboardButton(text="❌ Soxta link O'chirish", callback_data="remove_fake_link"),
+        ],
+        [
             InlineKeyboardButton(text="🎬 Serial qo'shish", callback_data="add_serial"),
             InlineKeyboardButton(text="🗑️ Serial o'chirish", callback_data="remove_serial"),
         ],

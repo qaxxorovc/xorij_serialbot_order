@@ -6,3 +6,4 @@ from . import remove_movie
 from . import add_subscription
 from . import remove_subscription
 from . import add_remove_admin
+from . import add_remove_fake_link

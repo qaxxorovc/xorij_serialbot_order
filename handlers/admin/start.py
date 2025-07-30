@@ -21,6 +21,12 @@ async def admin_message(message: types.Message, state: FSMContext):
     await state.finish()
 
 
+    get_fake_links = await get_all_links()
+
+    if get_fake_links:
+        print(get_fake_links)
+
+
 @dp.message_handler(IsAdmin(),text="🛠️ Bakor qilish",state="*")
 async def bot_start(message: types.Message, state: FSMContext):
     await message.answer(

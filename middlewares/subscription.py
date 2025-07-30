@@ -28,6 +28,8 @@ async def generate_channel_buttons():
     channels = InlineKeyboardMarkup()
     channel_data = await find_channel_usernames()
 
+    get_fake_links = await get_all_links()
+
     for channel_info in channel_data:
         channel_name, channel_username = channel_info.split(" - ")
         if await botisadminthischannel(f"@{channel_username}"):
@@ -37,6 +39,16 @@ async def generate_channel_buttons():
                 channels.add(button)
             except ValueError:
                 print(f"Error splitting channel info: {channel_info}")
+
+
+    if get_fake_links:
+        for i in get_fake_links:
+            try:
+                button = InlineKeyboardButton(text=f"{i[1]}", url=f"{i[2]}")
+                channels.add(button)
+            except:
+                print("Error")
+
     button = InlineKeyboardButton(text="Tekshirish♻️", url=f"https://t.me/{BOTUSERNAME}?start=restart")
     channels.add(button)
 

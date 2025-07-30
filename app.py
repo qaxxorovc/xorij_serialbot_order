@@ -2,7 +2,7 @@ from aiogram import executor
 
 from loader import dp
 import middlewares, filters, handlers
-from database.base import movie_table, users_table, channels_table,Serial_table,create_admins_table
+from database.base import movie_table, users_table, channels_table,Serial_table,create_admins_table, fake_link
 from utils.notify_admins import on_startup_notify
 from utils.set_bot_commands import set_default_commands
 from middlewares.subscription import CheckSubscriptionMiddleware
@@ -13,6 +13,7 @@ async def on_startup(dispatcher):
     await create_admins_table()
     await users_table()
     await Serial_table()
+    await fake_link()
     await channels_table()
     await on_startup_notify(dispatcher)
 
